@@ -73,14 +73,22 @@ class nave{
     posicaoNave.add(velocidadeNave);
     velocidadeNave.mult(.95);
     posicaoNave.x %= width;
-    if(posicaoNave.x < -10 || posicaoNave.x > (width - 10)){
+    if(posicaoNave.x < -10){
       refazerBG = true;
       posicaoNave.x = width; //<>//
     }
+    if((posicaoNave.x + 5) > width){
+      refazerBG = true;
+      posicaoNave.x = width;
+    }
     posicaoNave.y %= height;
-    if(posicaoNave.y < -10 || posicaoNave.y > (height - 10)){
+    if(posicaoNave.y < -10){
       refazerBG = true;
       posicaoNave.y = height; //<>//
+    }
+    if((posicaoNave.y + 5) > height){
+      refazerBG = true;
+      posicaoNave.y = height;
     }
     if(teclas[4]){
       if(millis() - ultimoTiroNave > delayTempoNave){
