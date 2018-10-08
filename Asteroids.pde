@@ -25,16 +25,16 @@ class GameManager{
       //bullets.get(i).edges();
       if(balas.get(i).update()){
         balas.remove(i);
-      i--;
-    }
-    if(i < 0){
+        i--;
+      }
+      if(i < 0){
        break; 
-    }
+      }
       balas.get(i).render();
-      //if(bullets.get(i).checkCollision(asteroids)){
-      //  bullets.remove(i);
-      //  i--;
-      //} 
+      /*if(balas.get(i).checkCollision(asteroids)){
+        balas.remove(i);
+        i--;
+      }*/
     }
   }
   
@@ -86,3 +86,4 @@ void rotate2D(PVector v, float theta) {
   v.x = v.x*cos(theta) - v.y*sin(theta);
   v.y = xTemp*sin(theta) + v.y*cos(theta);
 }
+

@@ -5,7 +5,7 @@ class Bala{
   float bulletY;
   int radius = 5;
   int counter = 0;
-  int timeout = 100;
+  int timeout = 50;
   PImage img = loadImage("LazerBullet.png");
   
   public Bala(PVector pos, PVector vel){
@@ -28,4 +28,13 @@ class Bala{
     image(img, 0, 0, radius, radius*5); 
     popMatrix();
   }
+  
+  /*boolean checkColision(ArrayList<Asteroid> asteroids){
+    for(Asteroid a : asteroids){
+      if (dist(position.x, position.y, a.pos.x, a.pos.y) < (6 * 15) ) {
+        return true;
+      } 
+     }
+   return false;
+  }*/
 }
