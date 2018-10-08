@@ -6,6 +6,7 @@ class nave{
   float direcaoNave;                                                     // Guarda a rotação da nave
   int ultimoTiroNave;                                                    // Guarda o tempo e millis em que o ultimo tiro foi atirado
   int delayTempoNave;                                                    // Guarda o delay entre os tiros atirados
+  boolean refazerBG;
   
   
   // O construtor principal da classe nave. Coloca os valores default nas variaveis e cria o formato da nave
@@ -14,6 +15,7 @@ class nave{
     velocidadeNave = new PVector();
     posicaoNave = new PVector(width / 2, height / 2);
     direcaoNave = 0;
+    refazerBG = false;
     ultimoTiroNave = 0;
     delayTempoNave = 300;
     teclas = new boolean[5];
@@ -71,12 +73,14 @@ class nave{
     posicaoNave.add(velocidadeNave);
     velocidadeNave.mult(.95);
     posicaoNave.x %= width;
-    if(posicaoNave.x < -10){
-      posicaoNave.x = width;
+    if(posicaoNave.x < -10 || posicaoNave.x > (width - 10)){
+      refazerBG = true;
+      posicaoNave.x = width; //<>//
     }
     posicaoNave.y %= height;
-    if(posicaoNave.y < -10){
-      posicaoNave.y = height;
+    if(posicaoNave.y < -10 || posicaoNave.y > (height - 10)){
+      refazerBG = true;
+      posicaoNave.y = height; //<>//
     }
     if(teclas[4]){
       if(millis() - ultimoTiroNave > delayTempoNave){

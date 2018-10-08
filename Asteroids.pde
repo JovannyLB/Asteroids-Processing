@@ -68,6 +68,11 @@ void setup(){
 void draw(){
   if(lives > 0){
     manager.drawBG(100);
+    if(jogador.refazerBG == true){
+      valorAlturaBG.clear();
+      valorLarguraBG.clear();
+      jogador.refazerBG = false;
+    }
     manager.drawGame();
     text("PONTOS: " + points,700,50);
     text("VIDAS: " + lives,50,50);
@@ -86,4 +91,3 @@ void rotate2D(PVector v, float theta) {
   v.x = v.x*cos(theta) - v.y*sin(theta);
   v.y = xTemp*sin(theta) + v.y*cos(theta);
 }
-
