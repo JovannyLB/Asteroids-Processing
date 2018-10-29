@@ -2,7 +2,7 @@
 class Bala{
   PVector position, veloc;
   float bulletX;
-  float bulletY;
+  float bulletY, r;
   int radius = 5;
   int counter = 0;
   int timeout = 50;
@@ -11,6 +11,7 @@ class Bala{
   public Bala(PVector pos, PVector vel){
     position = pos;
     veloc = vel;
+    r = 3;
   }
   
   public boolean update(){
@@ -28,7 +29,15 @@ class Bala{
     image(img, 0, 0, radius, radius*5); 
     popMatrix();
   }
-  
+  boolean hits(PVector apos, float ar){
+    float d = dist(position.x, position.y, apos.x, apos.y);
+    if(d <= r + ar){
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
   /*boolean checkColision(ArrayList<Asteroid> asteroids){
     for(Asteroid a : asteroids){
       if (dist(position.x, position.y, a.pos.x, a.pos.y) < (6 * 15) ) {
@@ -37,4 +46,3 @@ class Bala{
      }
    return false;
   }*/
-}

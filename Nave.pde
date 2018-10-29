@@ -7,6 +7,7 @@ class nave{
   int ultimoTiroNave;                                                    // Guarda o tempo e millis em que o ultimo tiro foi atirado
   int delayTempoNave;                                                    // Guarda o delay entre os tiros atirados
   boolean refazerBG;
+  float r = 10;
   
   
   // O construtor principal da classe nave. Coloca os valores default nas variaveis e cria o formato da nave
@@ -21,8 +22,9 @@ class nave{
     teclas = new boolean[5];
     formaNave = createShape();                                            // A nave é criada com o centro em 0, 0 e é extremamente pequena
     formaNave.beginShape();                                               // Criar ela em 0, 0 garante que o ponto de rotação é no centro
-    formaNave.fill(255);                                                  // Criar ela pequena da mais controle sobre escalar a nave
+    formaNave.fill(0);                                                  // Criar ela pequena da mais controle sobre escalar a nave
     formaNave.strokeWeight(1);
+    formaNave.stroke(255);
     formaNave.vertex(0, -4);
     formaNave.vertex(2, 0);
     formaNave.vertex(2, 2);
@@ -41,6 +43,16 @@ class nave{
     formaNave.resetMatrix();
     formaNave.rotate(radians(direcaoNave));
     shape(formaNave, posicaoNave.x, posicaoNave.y, 10, 10);
+  }
+  
+  
+  boolean hits(PVector apos, float ar){
+    float d = dist(posicaoNave.x, posicaoNave.y, apos.x, apos.y);
+    if(d <= r + ar){
+      return true;
+    } else {
+      return false;
+    }
   }
   
   
@@ -97,6 +109,10 @@ class nave{
         PVector vel  = new PVector(0, -10);
         rotate2D(vel, radians(direcaoNave));
         balas.add(new Bala(testeP, vel));
+        /*
+        asteroids.add(new Asteroid(1, posicaoNave));
+        asteroids.get(asteroids.size()-1).drawAsteroid();
+        */
       }
       
     }
